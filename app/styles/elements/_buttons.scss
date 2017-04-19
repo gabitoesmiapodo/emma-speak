@@ -1,0 +1,9 @@
+.button-rounded-full {
+    background-color: #ddd;
+    border-color: #000;
+    border-radius: # { $rounded-button-dimensions / 2 };
+    border-width: 3;
+    color: #fff;
+    height: $rounded-button-dimensions;
+    width: $rounded-button-dimensions;
+}

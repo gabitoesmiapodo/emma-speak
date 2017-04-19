@@ -1,6 +1,13 @@
-// Import the theme’s variables. If you’re using a color scheme
-// other than “light”, switch the path to the alternative scheme,
-// for example 'nativescript-theme-core/scss/dark'.
 @import '~nativescript-theme-core/scss/orange';
+
+// #variables
+@import "~/styles/variables";
+
 // Import the theme’s main ruleset.
 @import '~nativescript-theme-core/scss/index';
+
+// #our base style
+@import "~/styles/index";
+
+// #include components scss to compile to css
+@import "~/pages/home/home.scss";

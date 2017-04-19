@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import * as application from "application";
 import { Page } from "ui/page";
 import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 
@@ -9,22 +10,27 @@ import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 
 export class FreeWritingComponent {
 
-    messageSpeak: string;
-    theText: string;
     TTS = new TNSTextToSpeech();
     speakOptions: SpeakOptions;
 
     constructor() {
 
-        this.messageSpeak = "Hola Emma... ¿Cómo estás?"
-        this.theText = "";
+        let speakRate : number;
+
+        // Speak rate works diferent on android and ios
+        if (application.android) {
+            speakRate = 0.8;
+        }
+        else if (application.ios) {
+            speakRate = 0.1;
+        }
 
         this.speakOptions = {
-            text: this.messageSpeak,
-            speakRate: 0.3,
-            pitch: 1.5,
-            volume: 1.0,
-            language: "es-ES"
+            language: "es",
+            pitch: 1.3,
+            speakRate: speakRate,
+            text: '',
+            volume: 1.0
         }
 
     }
@@ -32,10 +38,8 @@ export class FreeWritingComponent {
     /**
      * Speak
      */
-    emmaSpeak() {
-        // Call the `speak` method passing the SpeakOptions object
+    emmaSpeak() : void {
         this.TTS.speak(this.speakOptions);
-        this.theText = this.messageSpeak;
     }
 
 }
