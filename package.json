@@ -5,9 +5,6 @@
   "repository": "https://github.com/gabitoesmiapodo/emma-speak.git",
   "nativescript": {
     "id": "com.keetup.emmaspeak",
-    "tns-ios": {
-      "version": "2.5.0"
-    },
     "tns-android": {
       "version": "2.5.0"
     }

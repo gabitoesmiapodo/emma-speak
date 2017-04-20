@@ -1,9 +1,40 @@
-.button-rounded-full {
+.button-rounded {
     background-color: #ddd;
     border-color: #000;
-    border-radius: # { $rounded-button-dimensions / 2 };
     border-width: 3;
     color: #fff;
-    height: $rounded-button-dimensions;
-    width: $rounded-button-dimensions;
+}
+.button-rounded-lg {
+    border-radius: #{ $rounded-button-dimensions-lg / 2 };
+    height: $rounded-button-dimensions-lg;
+    width: $rounded-button-dimensions-lg;
+}
+.button-rounded-sm {
+    border-radius: #{ $rounded-button-dimensions-sm / 2 };
+    height: $rounded-button-dimensions-sm;
+    width: $rounded-button-dimensions-sm;
+}
+// #home buttons
+.home-buttons-lg {
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-color: transparent;      // removes shadow
+    border-width: 1;                // removes shadow
+    height: $rounded-button-dimensions-lg;
+    margin-bottom: 10;
+    width: $rounded-button-dimensions-lg;
+    &.top-button {
+        margin-top: 30;
+    }
+    &.home-button-write {
+        background-image: url("~/images/buttons/btn-write.png");
+    }
+    &.home-button-copy {
+        background-image: url("~/images/buttons/btn-copy.png");
+    }
+    &:pressed {
+        opacity: 0.5;
+    }
 }
