@@ -6,8 +6,11 @@
             autocorrect="false"
             class="standard-input input-horizontal-button"
             hint="Escribir acá..."
-            id="theMessage"
         ></TextView>
-        <Button class="button-sm button-submit button-submit-play button-image-common" (tap)="emmaSpeak()"></Button>
+        <Button
+            (tap)="emmaSpeak()"
+            class="button-sm button-submit button-submit-play button-image-common"
+            isEnabled="{{ tmpSpeechText.length > 0 }}"
+        ></Button>
     </FlexboxLayout>
 </StackLayout>

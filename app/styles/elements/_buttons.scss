@@ -26,16 +26,19 @@
 .button-submit {
     margin-left: 10;
     &.button-submit-play {
-        background-image: url("~/images/buttons/btn-play.png");
+        background-image: url("res://btn_play");
+    }
+    &.button-reload {
+        background-image: url("res://btn_reload");
     }
 }
 // #home buttons
 .button-home {
     margin-bottom: 10;
     &.button-home-write {
-        background-image: url("~/images/buttons/btn-write.png");
+        background-image: url("res://btn_write");
     }
     &.button-home-copy {
-        background-image: url("~/images/buttons/btn-copy.png");
+        background-image: url("res://btn_copy");
     }
 }
