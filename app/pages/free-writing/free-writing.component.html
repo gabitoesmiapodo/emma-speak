@@ -1,10 +1,13 @@
-<StackLayout class="page-base-bg">
-    <Button class="btn btn-primary button-rounded-full" text="Hablar" (tap)="emmaSpeak()"></Button>
-    <TextView
-        [(ngModel)]="speakOptions.text"
-        autocapitalizationType="allCharacters"
-        autocorrect="false"
-        hint="Escribir acá..."
-        id="theMessage"
-    ></TextView>
+<StackLayout class="page-base-bg landscape-bg">
+    <FlexboxLayout class="form-padding">
+        <TextView
+            [(ngModel)]="tmpSpeechText"
+            autocapitalizationType="allCharacters"
+            autocorrect="false"
+            class="standard-input input-horizontal-button"
+            hint="Escribir acá..."
+            id="theMessage"
+        ></TextView>
+        <Button class="button-sm button-submit button-submit-play button-image-common" (tap)="emmaSpeak()"></Button>
+    </FlexboxLayout>
 </StackLayout>

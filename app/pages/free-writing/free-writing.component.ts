@@ -13,6 +13,7 @@ export class FreeWritingComponent {
     TTS = new TNSTextToSpeech();
     speakConfig = new SpeakConfig;
     speakOptions: SpeakOptions = this.speakConfig.speakOptionsDefault;
+    tmpSpeechText : string;
 
     constructor(private page: Page) {
         page.actionBarHidden = true;
@@ -22,6 +23,8 @@ export class FreeWritingComponent {
      * Speak
      */
     emmaSpeak() : void {
+        // Convert to lowercase so it is correctly spoken (Android)
+        this.speakOptions.text = this.tmpSpeechText.toLowerCase();
         this.TTS.speak(this.speakOptions);
     }
 
