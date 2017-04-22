@@ -1,16 +1,20 @@
-<StackLayout class="page-base-bg landscape-bg">
+<StackLayout (tap)="removeClasses()" class="page-base-bg landscape-bg">
     <FlexboxLayout class="form-padding">
-        <TextView
+        <TextField
             [(ngModel)]="tmpSpeechText"
+            [class.disabled]="isSpeaking"
             autocapitalizationType="allCharacters"
             autocorrect="false"
             class="standard-input input-horizontal-button"
-            hint="Escribir acá..."
-        ></TextView>
+            hint="Escribir..."
+            isEnabled="{{ !isSpeaking }}"
+            returnKeyType="next"
+        ></TextField>
         <Button
             (tap)="emmaSpeak()"
             class="button-sm button-submit button-submit-play button-image-common"
-            isEnabled="{{ tmpSpeechText.length > 0 }}"
+            isEnabled="{{ isSpeakButtonEnabled() }}"
+            [class.disabled]="isSpeakButtonDisabled()"
         ></Button>
     </FlexboxLayout>
 </StackLayout>

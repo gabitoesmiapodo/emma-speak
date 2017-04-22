@@ -9,6 +9,9 @@
     color: #fff;
     font-size: 28;
     font-weight: bold;
+    &.disabled {
+        opacity: 0.3;
+    }
 }
 .input-horizontal-button {
     height: 50;

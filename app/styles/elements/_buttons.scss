@@ -9,6 +9,9 @@
     &:pressed {
         opacity: 0.5;
     }
+    &.disabled {
+        opacity: 0.5;
+    }
 }
 .button-sm {
     height: $rounded-button-dimensions-sm;
