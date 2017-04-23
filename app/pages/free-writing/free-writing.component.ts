@@ -82,6 +82,17 @@ export class FreeWritingComponent {
     }
 
     /**
+     * Get how much time to speak
+     */
+    getSpeakingLength() : number {
+        // this takes the characters amount, multiplies it by a set number (0.1)
+        // and then by 1000 to get how many milliseconds the app is "talking"
+        // this seems to work fine on Android, but it surely will break eventually...
+        // I will fix this when I understand how the TTS callback works
+        return this.tmpSpeechText.length * 0.1 * 1000;
+    }
+
+    /**
      * Speak
      */
     emmaSpeak() : void {
@@ -91,11 +102,20 @@ export class FreeWritingComponent {
         }
         else if(this.isSpeakButtonEnabled()) {
 
-            // I can't make the speakOptions callback work,
+            // I can't get this to work...
+            // Seems to work fine according to console.log(this.isSpeaking)
+            // But inputs won't get cleared
+            // this.speakOptions.finishedCallback = ()=> {
+            //     console.log(this.isSpeaking) // shows true (OK)
+            //     this.isSpeaking = false;
+            //     console.log(this.isSpeaking) // shows false (OK)
+            // };
+
+            // I can't make the above speakOptions callback work,
             // so I will "fix" this with a timeout...
             setTimeout(()=> {
                 this.isSpeaking = false;
-            }, 2000);
+            }, this.getSpeakingLength());
 
             this.fixAndroidUppercaseGlitch();
             this.isSpeaking = true;
