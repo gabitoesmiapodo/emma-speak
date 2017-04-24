@@ -5,7 +5,7 @@ export class SpeakConfig {
 
     private speakOptionsConfig : SpeakOptions = {
             language: "es",
-            pitch: 1.2,
+            pitch: 1.6,
             speakRate: application.android ? 0.6 : 0.1,
             text: '',
             volume: 1.0

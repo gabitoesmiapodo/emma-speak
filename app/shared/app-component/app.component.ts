@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { registerElement } from "nativescript-angular/element-registry";
 
 @Component({
     selector: "ns-app",
@@ -6,6 +7,8 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
     constructor() {
-        //
+
+        registerElement("Gif", () => require("nativescript-gif").Gif);
+
     }
 }

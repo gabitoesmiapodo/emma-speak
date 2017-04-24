@@ -1,53 +1,73 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 import { Page } from "ui/page";
+import { TextView } from "ui/text-view";
 import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 import { SpeakConfig } from '../../shared/config/speech-config';
 
 @Component({
     selector: "ns-free-writing",
-    templateUrl: "./pages/free-writing/free-writing.component.html",
+    templateUrl: "./pages/free-writing/free-writing.component.html"
 })
 
-export class FreeWritingComponent {
+export class FreeWritingComponent implements OnInit {
+
+    @ViewChild("faceAnimation") faceAnimationElem: ElementRef;
 
     private TTS = new TNSTextToSpeech();
     private speakConfig = new SpeakConfig;
-    private speakOptions : SpeakOptions = this.speakConfig.speakOptionsDefault;
-    private _isSpeaking : boolean = false;
-    private _tmpSpeechText : string = '';
+    private speakOptions: SpeakOptions = this.speakConfig.speakOptionsDefault;
+    private _isSpeaking: boolean = false;
+    private _tmpSpeechText: string = '';
+    private faceAnimation: any;
 
-    constructor(private page: Page) {
+    constructor(private page: Page) { }
 
-        page.actionBarHidden = true;
+    /**
+     * Initialize stuff
+     */
+    ngOnInit() {
+
+        this.page.actionBarHidden = true;
+
+    }
+
+    /**
+     * Animation is loaded
+     * @param theElement
+     */
+    onAnimationLoaded(theElement) {
+
+        this.faceAnimation = theElement;
+        this.faceAnimation.stop()
 
     }
 
     // getters / setters
-    get isSpeaking() : boolean {
+    get isSpeaking(): boolean {
         return this._isSpeaking;
     }
 
-    set isSpeaking(status : boolean) {
+    set isSpeaking(status: boolean) {
         this._isSpeaking = status;
     }
 
-    get tmpSpeechText() : string {
+    get tmpSpeechText(): string {
         return this._tmpSpeechText;
     }
 
-    set tmpSpeechText(theText : string) {
+    set tmpSpeechText(theText: string) {
         this._tmpSpeechText = theText;
     }
 
     /**
      * Checks if there's something to say
      */
-    isThereSomethingToSay() : boolean {
+    isThereSomethingToSay(): boolean {
 
-        if(typeof this.tmpSpeechText == undefined) {
+        if (typeof this.tmpSpeechText == undefined) {
             return false;
         }
-        else if(!this.tmpSpeechText.length) {
+        else if (!this.tmpSpeechText.length) {
             return false;
         }
         else {
@@ -59,9 +79,9 @@ export class FreeWritingComponent {
     /**
      * Convert to lowercase so it is correctly spoken (Android)
      */
-    private fixAndroidUppercaseGlitch() : void {
+    private fixAndroidUppercaseGlitch(): void {
 
-        if(this.page.android) {
+        if (this.page.android) {
             this.speakOptions.text = this.tmpSpeechText.toLowerCase();
         }
 
@@ -70,22 +90,22 @@ export class FreeWritingComponent {
     /**
      * Check if the Speak Button is disabled
      */
-    private isSpeakButtonDisabled() : boolean {
+    private isSpeakButtonDisabled(): boolean {
         return this.isSpeaking || !this.isThereSomethingToSay();
     }
 
     /**
      * Check if the Speak Button is enabled
      */
-    private isSpeakButtonEnabled() : boolean {
+    private isSpeakButtonEnabled(): boolean {
         return this.isThereSomethingToSay() && !this.isSpeaking;
     }
 
     /**
      * Get how much time to speak
      */
-    getSpeakingLength() : number {
-        // this takes the characters amount, multiplies it by a set number (0.1)
+    getSpeakingLength(): number {
+        // this takes the characters amount, multiplies it by a set nusmber (0.1)
         // and then by 1000 to get how many milliseconds the app is "talking"
         // this seems to work fine on Android, but it surely will break eventually...
         // I will fix this when I understand how the TTS callback works
@@ -95,12 +115,12 @@ export class FreeWritingComponent {
     /**
      * Speak
      */
-    emmaSpeak() : void {
+    emmaSpeak(): void {
 
-        if(this.isSpeaking) {
+        if (this.isSpeaking) {
             return;
         }
-        else if(this.isSpeakButtonEnabled()) {
+        else if (this.isSpeakButtonEnabled()) {
 
             // I can't get this to work...
             // Seems to work fine according to console.log(this.isSpeaking)
@@ -113,12 +133,16 @@ export class FreeWritingComponent {
 
             // I can't make the above speakOptions callback work,
             // so I will "fix" this with a timeout...
-            setTimeout(()=> {
+            setTimeout(() => {
+
                 this.isSpeaking = false;
+                this.faceAnimation.stop();
+
             }, this.getSpeakingLength());
 
             this.fixAndroidUppercaseGlitch();
             this.isSpeaking = true;
+            this.faceAnimation.start();
             this.TTS.speak(this.speakOptions);
 
         }

@@ -1,4 +1,8 @@
-<StackLayout class="page-base-bg landscape-bg">
+<StackLayout
+    class="page-base-bg landscape-bg"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:Gif="nativescript-gif"
+>
     <FlexboxLayout class="form-padding">
         <TextField
             [(ngModel)]="tmpSpeechText"
@@ -17,4 +21,10 @@
             [class.disabled]="isSpeakButtonDisabled()"
         ></Button>
     </FlexboxLayout>
+    <Gif
+        #faceAnimation
+        (loaded)=onAnimationLoaded(faceAnimation)
+        class="face-animation"
+        src="~/images/animations/animation.gif"
+    ></Gif>
 </StackLayout>
