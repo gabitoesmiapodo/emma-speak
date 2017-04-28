@@ -1,0 +1,11 @@
+// #general imports
+@import '~nativescript-theme-core/scss/orange';
+
+// #variables
+@import "~/styles/variables";
+
+// Import the theme’s main ruleset.
+@import '~nativescript-theme-core/scss/index';
+
+// #our base style
+@import "~/styles/index";

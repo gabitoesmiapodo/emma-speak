@@ -1,0 +1,30 @@
+<StackLayout
+    class="page-base-bg landscape-bg"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:Gif="nativescript-gif"
+>
+    <FlexboxLayout class="form-padding">
+        <TextField
+            [(ngModel)]="tmpSpeechText"
+            [class.disabled]="isSpeaking"
+            autocapitalizationType="allCharacters"
+            autocorrect="false"
+            class="standard-input input-horizontal-button"
+            hint="Escribir..."
+            isEnabled="{{ !isSpeaking }}"
+            returnKeyType="next"
+        ></TextField>
+        <Button
+            (tap)="emmaSpeak()"
+            class="button-sm button-submit button-submit-play button-image-common"
+            isEnabled="{{ isSpeakButtonEnabled() }}"
+            [class.disabled]="isSpeakButtonDisabled()"
+        ></Button>
+    </FlexboxLayout>
+    <Gif
+        #faceAnimation
+        (loaded)=onAnimationLoaded(faceAnimation)
+        class="face-animation"
+        src="~/images/animations/animation.gif"
+    ></Gif>
+</StackLayout>

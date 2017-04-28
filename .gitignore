@@ -33,3 +33,5 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 releases
+keetup.keystore
+build-android.sh

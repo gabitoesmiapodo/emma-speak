@@ -1,0 +1,47 @@
+// #buttons
+.button-image-common {
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-color: transparent;      // removes shadow
+    border-width: 1;                // removes shadow
+    &:pressed {
+        opacity: 0.5;
+    }
+    &.disabled {
+        opacity: 0.5;
+    }
+}
+.button-sm {
+    height: $rounded-button-dimensions-sm;
+    width: $rounded-button-dimensions-sm;
+}
+.button-md {
+    height: $rounded-button-dimensions-md;
+    width: $rounded-button-dimensions-md;
+}
+.button-lg {
+    height: $rounded-button-dimensions-lg;
+    width: $rounded-button-dimensions-lg;
+}
+// #standard submit buttons
+.button-submit {
+    margin-left: 10;
+    &.button-submit-play {
+        background-image: url("res://btn_play");
+    }
+    &.button-reload {
+        background-image: url("res://btn_reload");
+    }
+}
+// #home buttons
+.button-home {
+    margin-bottom: 10;
+    &.button-home-write {
+        background-image: url("res://btn_write");
+    }
+    &.button-home-copy {
+        background-image: url("res://btn_copy");
+    }
+}
